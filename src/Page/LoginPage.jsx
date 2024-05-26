@@ -30,6 +30,17 @@ function LoginF(){
       <div className="col-12 mt-3">
         <button className="btn btn-success" onClick={LoginF}>Войти</button>
       </div>
+      <div className="col-12 mt-5">
+        <h1>Users</h1>
+      </div>
+      <div className="col-12">
+        Login:Nazar<br/>
+        password:12345
+      </div>
+      <div className="col-12">
+        login:John<br/>
+        password:12345
+      </div>
     </div>
   </div>
  )
