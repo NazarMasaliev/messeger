@@ -3,6 +3,19 @@ import { accounts } from "./components/components"
 import { message } from "./components/components"
 import $ from 'jquery'
 function MainPage() {
+
+
+
+
+
+
+
+
+
+
+
+
+
   const [first, setfirst] = useState()
   const [second, setsecond] = useState()
 
@@ -24,6 +37,15 @@ function MainPage() {
   const addList = () => {
     setfirst([...first, add])
   };
+
+  const [value2, setValue2] = useState()
+  const add2 = {
+    chat: value2
+  }
+
+  const addList2 = () => {
+    setsecond([...second, add2])
+  }
 
 
 
@@ -51,7 +73,7 @@ function MainPage() {
       $('body').css({ "background-color": "white", "color": "black" })
     }
   }
-  
+
 
   useEffect(() => {
     showmessege();
@@ -61,77 +83,142 @@ function MainPage() {
     <div className="container-fluid">
       <div className="row">
         <div className="col-12 text-center">
-          <button className="btn btn-secondary" style={{float:"left"}} onClick={() => window.location.href = '/'}>выход</button>
+          <button className="btn btn-secondary" style={{ float: "left" }} onClick={() => window.location.href = '/'}>выход</button>
           {theme1 == 'dark' ?
-            <><button className='btn btn-light' style={{float:"right"}} onClick={() => themelight('light')}>Светлый</button></> : <>
-              <button className='btn btn-dark' style={{float:"right"}} onClick={() => themelight('dark')}>Темный</button></>}
+            <><button className='btn btn-light' style={{ float: "right" }} onClick={() => themelight('light')}>Светлый</button></> : <>
+              <button className='btn btn-dark' style={{ float: "right" }} onClick={() => themelight('dark')}>Темный</button></>}
         </div>
         <div className="col-12 text-center mt-3">
           <h1>Messeges</h1>
         </div>
         <div className="col-12">
           <div className="row">
-            <div className="col-4 text-center border" style={{ height: "80vh" }}>
+            <div className="col-6">
               <div className="row">
-                <div className="col-12 border">
-                  <h3>Accounts</h3>
-                </div>
-                <div className="col-12">
-                  {second != null ?
-                    <>{second.map(i =>
-
+                <div className="col-4 text-center border" style={{ height: "80vh" }}>
+                  <div className="row">
+                    <div className="col-12 border">
+                      <h3>Accounts</h3>
+                    </div>
+                    <div className="col-12">
                       <div className="col-12 account">
                         <div style={{ background: "gray", width: "100%", height: "100%", float: "left", padding: "20px" }}>
-                          <b >{i.name}</b>
+                          {first != null ?
+                            <>
+                              {first.map(i =>
+                                <b>
+                                  {i.name}
+                                </b>
+                              )}
+                            </>
+                            :
+                            <>
+                            </>
+                          }
                         </div>
                       </div>
-                    )}
-                    </>
-                    :
-                    <>
-                    </>
-                  }
+                    </div>
+                  </div>
+                </div>
+                <div className="col-7 text-center">
+                  <div className="row">
+                    <div className="col-12 border">
+                      <h3>Send Message</h3>
+                    </div>
+                    <div className="border" style={{ height: "70vh", float: "left", overflowY: "scroll" }}>
+                      {second != null ?
+                        <>
+                          {second.map(i =>
+                            <div className="col-12" style={{ textAlign: "right", height: "50px", width: "100%" }}>
+                              {i.chat}
+                            </div>
+                          )}
+                          {first.map(i =>
+                            <div className="col-12" style={{ textAlign: "left", height: "50px" }}>
+                              {i.chat}
+                            </div>
+                          )}
+                        </>
+                        :
+                        <>
+                        </>
+                      }
+                    </div>
+                    <div className="col-12 p-0" >
+                      <div className="row">
+                        <div className="col-9" style={{ height: "25x" }}>
+                          <input onChange={(e) => setValue2(e.target.value)} className="p-0 rounded" type="text" style={{ width: "100%", height: "100%" }} />
+                        </div>
+                        <div className="col-3">
+                          <button onClick={addList2} className="rounded" style={{ width: "100%", height: "100%" }}>отправить</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="col-7 text-center">
+            <div className="col-6">
               <div className="row">
-                <div className="col-12 border">
-                  <h3>Send Message</h3>
-                </div>
-                <div className="border" style={{ height: "70vh", float: "left" }}>
+                <div className="col-4 text-center border" style={{ height: "80vh" }}>
                   <div className="row">
-                    {first != null ?
-                      <>
-                        {first.map(i =>
-
-                          <div className="col-12" style={{ textAlign: "right" }}>
-                            {i.chat}
-                          </div>
-                        )}
-                        {second.map(i =>
-
-                          <div className="col-12" style={{ textAlign: "left" }}>
-                            {i.chat}
-                          </div>
-                        )}
-
-                      </>
-                      :
-                      <>
-                      </>
-                    }
-
-
+                    <div className="col-12 border">
+                      <h3>Accounts</h3>
+                    </div>
+                    <div className="col-12">
+                      <div className="col-12 account">
+                        <div style={{ background: "gray", width: "100%", height: "100%", float: "left", padding: "20px" }}>
+                          {second != null ?
+                            <>
+                              {second.map(i =>
+                                <b>
+                                  {i.name}
+                                </b>
+                              )}
+                            </>
+                            :
+                            <>
+                            </>
+                          }
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="col-12 p-0" >
+                <div className="col-7 text-center">
                   <div className="row">
-                    <div className="col-10" style={{ height: "25x" }}>
-                      <input onChange={(e) => setValue(e.target.value)} className="p-0 rounded" type="text" style={{ width: "100%", height: "100%" }} />
+                    <div className="col-12 border">
+                      <h3>Send Message</h3>
                     </div>
-                    <div className="col-2">
-                      <button onClick={addList} className="rounded" style={{ width: "100%", height: "100%" }}>отправить</button>
+                    <div className="border" style={{ height: "70vh", float: "left", overflowY: "scroll" }}>
+                      {first != null ?
+                        <>
+                          {first.map(i =>
+                            <div className="col-12" style={{ textAlign: "right", height: "50px", width: "100%" }}>
+                              {i.chat}
+                            </div>
+                          )}
+                          {second.map(i =>
+
+                            <div className="col-12" style={{ textAlign: "left", height: "50px" }}>
+                              {i.chat}
+                            </div>
+                          )}
+                        </>
+                        :
+                        <>
+                        </>
+                      }
+                    </div>
+                    <div className="col-12 p-0" >
+                      <div className="row">
+                        <div className="col-9" style={{ height: "25x" }}>
+                          <input onChange={(e) => setValue(e.target.value)} className="p-0 rounded" type="text" style={{ width: "100%", height: "100%" }} />
+                        </div>
+                        <div className="col-3">
+                          <button onClick={addList} className="rounded" style={{ width: "100%", height: "100%" }}>отправить</button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

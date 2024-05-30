@@ -14,13 +14,13 @@ export let accounts = [
 export let message = [
   {
     chat_id: 1,
+    name:'nazar',
     chat:'I am Nazar',
-    name:'nazar'
   },
   {
     chat_id:2,
+    name:'john',
     chat:'I am John',
-    name:'john'
   }
 ]
  
