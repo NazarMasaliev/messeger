@@ -54,6 +54,7 @@ function MainPage() {
 
 
   // theme
+
   const [theme1, setTheme] = useState(localStorage.getItem('theme'))
 
   function themelight(th) {
@@ -65,8 +66,18 @@ function MainPage() {
   function themechange() {
     if (localStorage.getItem('theme') === "light") {
       $('body').css({ "background-color": "white", "color": "black" })
+      $('body input').css({ "background-color": "white", "color": "black", "border":"solid 1px" })
+      $('.stylebackground').css({"background-image":"url(https://catherineasquithgallery.com/uploads/posts/2021-02/1613362914_175-p-bezhevii-fon-anime-248.jpg)"})
+      $('.jq').css({"background":"white"})
+      $('.chataccount').css({"background":"white"})
     } else if (localStorage.getItem('theme') === "dark") {
       $('body').css({ "background-color": "black", "color": "white" })
+      $('body input').css({ "background-color": "#2a3b44", "color": "white", "border":"none" })
+      $('.stylebackground').css({"background-image":"url(https://ichip.ru/images/cache/2020/1/23/q90_376032_c421fa4fa7c5ab98752e33e97.png)"})
+      $('.jq').css({"background":" #111B21"})
+      $('.chataccount').css({"background":"#2a3b44"})
+
+      
     }
     else {
       localStorage.setItem('theme', 'light');
@@ -78,6 +89,7 @@ function MainPage() {
   useEffect(() => {
     showmessege();
     themechange();
+
   }, [])
   return (
     <div className="container-fluid">
@@ -85,8 +97,13 @@ function MainPage() {
         <div className="col-12 text-center">
           <button className="btn btn-secondary" style={{ float: "left" }} onClick={() => window.location.href = '/'}>выход</button>
           {theme1 == 'dark' ?
-            <><button className='btn btn-light' style={{ float: "right" }} onClick={() => themelight('light')}>Светлый</button></> : <>
-              <button className='btn btn-dark' style={{ float: "right" }} onClick={() => themelight('dark')}>Темный</button></>}
+            <>
+              <button className='btn btn-light' style={{ float: "right" }} onClick={() => themelight('light')}>Светлый</button>
+            </>
+            :
+            <>
+              <button className='btn btn-dark' style={{ float: "right" }} onClick={() => themelight('dark')}>Темный</button>
+            </>}
         </div>
         <div className="col-12 text-center mt-3">
           <h1>Messeges</h1>
@@ -95,47 +112,70 @@ function MainPage() {
           <div className="row">
             <div className="col-6">
               <div className="row">
-                <div className="col-4 text-center border" style={{ height: "80vh" }}>
+                <div className="col-3 text-center border rounded jq" style={{ height: "82vh", backgroundColor: "#111B21" }}>
                   <div className="row">
-                    <div className="col-12 border">
+                    <div className="col-12 border" style={{height:"50px"}}>
                       <h3>Accounts</h3>
                     </div>
-                    <div className="col-12">
-                      <div className="col-12 account">
-                        <div style={{ background: "gray", width: "100%", height: "100%", float: "left", padding: "20px" }}>
-                          {first != null ?
-                            <>
-                              {first.map(i =>
-                                <b>
-                                  {i.name}
-                                </b>
-                              )}
-                            </>
-                            :
-                            <>
-                            </>
-                          }
-                        </div>
-                      </div>
+                    <div className="col-12 account p-0">
+
+                      {first != null ?
+                        <>
+                          {first.map(i =>
+                            <div className="chataccount">
+                              <div style={{ float: "left", width: "40%", height: "100%" }}>
+                                <img src={i.img} alt="" width={50} style={{ float: "left", marginLeft: "10px" }} className="rounded-circle" />
+                              </div>
+                              <div style={{ float: "left", width: "60%", height: "100%", paddingTop: "10px" }}></div>
+                              <b >
+                                {i.name}
+                              </b>
+                            </div>
+                          )}
+                        </>
+                        :
+                        <>
+                        </>
+                      }
+
+
                     </div>
                   </div>
                 </div>
-                <div className="col-7 text-center">
+                <div className="col-8 text-center rounded">
                   <div className="row">
-                    <div className="col-12 border">
-                      <h3>Send Message</h3>
+                    <div className="col-12 border rounded ">
+                      {first != null ?
+                        <>
+                          {first.map(i =>
+                           <div className="showuser">
+                           <div style={{width:"20%", float:"left"}}>
+                             <img src={i.img} alt="" width={50} className="rounded-circle" />
+                           </div>
+                           <div style={{width:"20%", float:"left"}}>
+                             <h3>{i.name}</h3>
+                           </div>
+                           
+                         </div>
+                          )}
+                        </>
+                        :
+                        <>
+                        </>
+                      }
+
                     </div>
-                    <div className="border" style={{ height: "70vh", float: "left", overflowY: "scroll" }}>
+                    <div className="border stylebackground">
                       {second != null ?
                         <>
                           {second.map(i =>
-                            <div className="col-12" style={{ textAlign: "right", height: "50px", width: "100%" }}>
-                              {i.chat}
+                            <div className="col-12 mt-4" style={{ textAlign: "right", height: "50px", width: "100%" }}>
+                              <b style={{ padding: "10px", background: "green", color: "white" }} className="rounded">{i.chat}</b>
                             </div>
                           )}
                           {first.map(i =>
-                            <div className="col-12" style={{ textAlign: "left", height: "50px" }}>
-                              {i.chat}
+                            <div className="col-12 mt-4" style={{ textAlign: "left", height: "50px", width: "100%" }}>
+                              <b style={{ padding: "10px", background: "gray", color: "white" }} className="rounded">{i.chat}</b>
                             </div>
                           )}
                         </>
@@ -145,13 +185,9 @@ function MainPage() {
                       }
                     </div>
                     <div className="col-12 p-0" >
-                      <div className="row">
-                        <div className="col-9" style={{ height: "25x" }}>
-                          <input onChange={(e) => setValue2(e.target.value)} className="p-0 rounded" type="text" style={{ width: "100%", height: "100%" }} />
-                        </div>
-                        <div className="col-3">
-                          <button onClick={addList2} className="rounded" style={{ width: "100%", height: "100%" }}>отправить</button>
-                        </div>
+                      <div style={{ height: "35px", width: "97%", float: "left" }}>
+                        <input className="inpsend" onChange={(e) => setValue2(e.target.value)} type="text" placeholder="введите текс" />
+                        <button onClick={addList2} style={{ width: "20%", border: "none", color: "white", background: "darkgreen", height: "100%" }}>отправить</button>
                       </div>
                     </div>
                   </div>
@@ -160,48 +196,72 @@ function MainPage() {
             </div>
             <div className="col-6">
               <div className="row">
-                <div className="col-4 text-center border" style={{ height: "80vh" }}>
+                <div className="col-3 text-center border rounded jq" style={{ height: "82vh", backgroundColor: "#111B21" }}>
                   <div className="row">
-                    <div className="col-12 border">
+                    <div className="col-12 border rounded" style={{height:"50px"}}>
                       <h3>Accounts</h3>
                     </div>
-                    <div className="col-12">
-                      <div className="col-12 account">
-                        <div style={{ background: "gray", width: "100%", height: "100%", float: "left", padding: "20px" }}>
-                          {second != null ?
-                            <>
-                              {second.map(i =>
-                                <b>
-                                  {i.name}
-                                </b>
-                              )}
-                            </>
-                            :
-                            <>
-                            </>
-                          }
-                        </div>
-                      </div>
+
+                    <div className="col-12 account p-0">
+
+                      {second != null ?
+                        <>
+                          {second.map(i =>
+                            <div className="chataccount">
+                              <div style={{ float: "left", width: "40%", height: "100%" }}>
+                                <img src={i.img} alt="" width={50} style={{ float: "left", marginLeft: "10px" }} className="rounded-circle" />
+                              </div>
+                              <div style={{ float: "left", width: "60%", height: "100%", paddingTop: "10px" }}></div>
+                              <b >
+                                {i.name}
+                              </b>
+                            </div>
+                          )}
+                        </>
+                        :
+                        <>
+                        </>
+                      }
+
                     </div>
                   </div>
+
                 </div>
-                <div className="col-7 text-center">
+                <div className="col-8 text-center rounded">
                   <div className="row">
-                    <div className="col-12 border">
-                      <h3>Send Message</h3>
+                    <div className="col-12 border rounded">
+                      {second != null ?
+                        <>
+                          {second.map(i =>
+                            <div className="showuser">
+                              <div style={{width:"20%", float:"left"}}>
+                                <img src={i.img} alt="" width={50} className="rounded-circle" />
+                              </div>
+                              <div style={{width:"20%", float:"left"}}>
+                                <h3>{i.name}</h3>
+                              </div>
+                              
+                            </div>
+
+                          )}
+                        </>
+                        :
+                        <>
+                        </>
+                      }
                     </div>
-                    <div className="border" style={{ height: "70vh", float: "left", overflowY: "scroll" }}>
+                    <div className="border stylebackground">
                       {first != null ?
                         <>
                           {first.map(i =>
-                            <div className="col-12" style={{ textAlign: "right", height: "50px", width: "100%" }}>
-                              {i.chat}
+                            <div className="col-12 mt-4" style={{ textAlign: "right", height: "50px", width: "100%" }}>
+                              <b style={{ padding: "10px", background: "green", color: "white" }} className="rounded">{i.chat}</b>
                             </div>
                           )}
                           {second.map(i =>
 
-                            <div className="col-12" style={{ textAlign: "left", height: "50px" }}>
-                              {i.chat}
+                            <div className="col-12 mt-4" style={{ textAlign: "left", height: "50px", width: "100%" }}>
+                              <b style={{ padding: "10px", background: "gray", color: "white" }} className="rounded">{i.chat}</b>
                             </div>
                           )}
                         </>
@@ -211,13 +271,9 @@ function MainPage() {
                       }
                     </div>
                     <div className="col-12 p-0" >
-                      <div className="row">
-                        <div className="col-9" style={{ height: "25x" }}>
-                          <input onChange={(e) => setValue(e.target.value)} className="p-0 rounded" type="text" style={{ width: "100%", height: "100%" }} />
-                        </div>
-                        <div className="col-3">
-                          <button onClick={addList} className="rounded" style={{ width: "100%", height: "100%" }}>отправить</button>
-                        </div>
+                      <div style={{ height: "35px", width: "97%", float: "left" }}>
+                        <input className="inpsend" onChange={(e) => setValue(e.target.value)} type="text" placeholder="введите текс" />
+                        <button onClick={addList} style={{ width: "20%", border: "none", color: "white", background: "darkgreen", height: "100%" }}>отправить</button>
                       </div>
                     </div>
                   </div>

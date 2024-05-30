@@ -36,8 +36,43 @@
     transform: rotate(360deg);
   }
 }
-.account :hover{
-  color: red;
-  cursor: pointer;
+.account{
+  text-align: center;
+}
+.stylebackground{
+  float: left;
+  background-image: url("https://ichip.ru/images/cache/2020/1/23/q90_376032_c421fa4fa7c5ab98752e33e97.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 70vh;
+  overflow-y: scroll;
   
+}
+.chataccount{
+  float: left;
+  text-align: center;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+  background-color: #2a3b44;
+}
+.chataccount:hover{
+  background-color: #3c4f59;
+}
+.inpsend{
+  width: 80%;
+  height: 100%;
+  background-color: #2a3b44;
+  border:none;
+  color: white;
+  padding-left: 10px;
+  outline: none;
+}
+.showuser{
+  float: left;
+  height: 50px;
+  width: 100%;
+  text-align: left;
 }
