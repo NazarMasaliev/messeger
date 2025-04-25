@@ -42,9 +42,9 @@ function MainPage() {
 
   const [theme1, setTheme] = useState(localStorage.getItem('theme'))
 
-  function themelight(th) {
-    localStorage.setItem('theme', th);
-    setTheme(th)
+  function themelight() {
+    localStorage.setItem('theme', "dark");
+    setTheme("dark")
     themechange();
   }
 
@@ -78,25 +78,17 @@ function MainPage() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-12 text-center">
+        <div className="col-12 text-center bg-secondary p-2">
           <button className="btn btn-secondary" style={{ float: "left" }} onClick={() => window.location.href = '/'}>выход</button>
-          {theme1 == 'dark' ?
-            <>
-              <button className='btn btn-light' style={{ float: "right" }} onClick={() => themelight('light')}>Светлый</button>
-            </>
-            :
-            <>
-              <button className='btn btn-dark' style={{ float: "right" }} onClick={() => themelight('dark')}>Темный</button>
-            </>}
         </div>
         <div className="col-12 text-center mt-3">
           <h1>Messeges</h1>
         </div>
-        <div className="col-12">
+        <div className="col-12 mt-4">
           <div className="row">
             <div className="col-6">
               <div className="row">
-                <div className="col-3 text-center border rounded jq" style={{ height: "70vh", backgroundColor: "#111B21" }}>
+                <div className="col-3 text-center border  jq" style={{ height: "70vh", backgroundColor: "#111B21",borderTopLeftRadius:"10px" }}>
                   <div className="row">
                     <div className="col-12 border" style={{ height: "50px" }}>
                       <h3>Accounts</h3>
@@ -127,8 +119,8 @@ function MainPage() {
                     </div>
                     <div className="col-12 p-0" >
                       <div style={{ height: "35px", width: "97%", float: "left" }}>
-                        <input className="inpsend" onChange={(e) => setValue2(e.target.value)} type="text" placeholder="введите текс" />
-                        <button onClick={() => addList2(2)} style={{ width: "20%", border: "none", color: "white", background: "darkgreen", height: "100%" }}>отправить</button>
+                        <input style={{borderBottomLeftRadius:"10px"}} className="inpsend " onChange={(e) => setValue2(e.target.value)} type="text" placeholder="введите текс" />
+                        <button onClick={() => addList2(2)} style={{ width: "19%", border: "none", color: "white", background: "darkgreen", height: "100%", borderBottomRightRadius:"10px" }}>отправить</button>
                       </div>
                     </div>
                   </div>
@@ -139,7 +131,7 @@ function MainPage() {
               <div className="row">
                 <div className="col-3 text-center border rounded jq" style={{ height: "70vh", backgroundColor: "#111B21" }}>
                   <div className="row">
-                    <div className="col-12 border rounded" style={{ height: "50px" }}>
+                    <div className="col-12 border " style={{ height: "50px ", borderTopLeftRadius:"10px" }}>
                       <h3>Accounts</h3>
                     </div>
                   </div>
@@ -167,8 +159,8 @@ function MainPage() {
                     </div>
                     <div className="col-12 p-0" >
                       <div style={{ height: "35px", width: "97%", float: "left" }}>
-                        <input className="inpsend" onChange={(e) => setValue(e.target.value)} type="text" placeholder="введите текс" />
-                        <button onClick={() => addList(1)} style={{ width: "20%", border: "none", color: "white", background: "darkgreen", height: "100%" }}>отправить</button>
+                        <input style={{borderBottomLeftRadius:"10px"}} className="inpsend" onChange={(e) => setValue(e.target.value)} type="text" placeholder="введите текс" />
+                        <button onClick={() => addList(1)} style={{ width: "19%", border: "none", color: "white", background: "darkgreen", height: "100%", borderBottomRightRadius:"10px" }}>отправить</button>
                       </div>
                     </div>
                   </div>

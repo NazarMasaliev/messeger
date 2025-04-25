@@ -36,6 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.container-fluid{
+  background-color: black;
+  height: 100vh;
+  color: white;
+}
+
 .account{
   text-align: center;
 }
